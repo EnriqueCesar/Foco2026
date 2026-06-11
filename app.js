@@ -71,11 +71,9 @@ function init() {
   $('mes').onchange = render;
   $('region').onchange = render;
   $('dm').onchange = render;
-  $('storeSearch').oninput = () => { resolveStore(); render(); };
-  $('store').onchange = () => { seedStoreSearch(); render(); };
+  $('store').onchange = render;
 
   syncFilters();
-  seedStoreSearch();
   render();
 }
 
@@ -88,22 +86,11 @@ function fillStoreAll() {
   const sorted = dir.slice().sort((a, b) => a.tienda.localeCompare(b.tienda));
   $('store').innerHTML = '';
   sorted.forEach(s => $('store').add(new Option(`${s.tienda} · ${s.ceco}`, s.ceco)));
-  $('storeList').innerHTML = sorted.map(s => `
-    <option value="${escapeHtml(s.tienda)}">${s.ceco} · ${escapeHtml(s.tienda)}</option>
-    <option value="${s.ceco}">${s.ceco} · ${escapeHtml(s.tienda)}</option>
-    <option value="${s.ceco} · ${escapeHtml(s.tienda)}"></option>
-  `).join('');
-}
-
-function seedStoreSearch() {
-  const c = $('store').value || (dir[0] && dir[0].ceco);
-  if (c && byCeco[c]) $('storeSearch').value = `${byCeco[c].tienda}`;
 }
 
 function syncFilters() {
   $('regionWrap').classList.toggle('hide', view !== 'rd');
   $('dmWrap').classList.toggle('hide', view !== 'dm');
-  $('searchWrap').classList.toggle('hide', view !== 'tienda');
   $('storeWrap').classList.toggle('hide', view !== 'tienda');
   $('filters').className = 'filters ' + view;
 }
@@ -211,20 +198,6 @@ function trendOverall(cecos) {
     text: d > 0 ? '▲ Mejorando' : d < 0 ? '▼ Atención' : '■ Estable',
     cls: d > 0 ? 'green' : d < 0 ? 'red' : 'neutral'
   };
-}
-
-function resolveStore() {
-  const raw = $('storeSearch').value.trim();
-  const q = raw.toLowerCase();
-  if (!q) return;
-
-  const f = dir.find(d =>
-    d.ceco === q ||
-    `${d.ceco} · ${d.tienda}`.toLowerCase() === q ||
-    d.tienda.toLowerCase() === q
-  ) || dir.find(d => d.ceco.includes(q) || d.tienda.toLowerCase().includes(q));
-
-  if (f) $('store').value = f.ceco;
 }
 
 function updateHeaderSubtitle(type, scopeLabel) {
@@ -339,7 +312,6 @@ function renderExecMetric(groups, scopeCecos, k, type) {
 }
 
 function renderStore() {
-  resolveStore();
   const c = $('store').value || (dir[0] && dir[0].ceco);
   const s = byCeco[c];
   renderContext('tienda', s);
