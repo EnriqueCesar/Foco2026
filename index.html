@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FOCO 2026 V6</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="appTop">
+    <div class="mark">★</div>
+    <div class="appTitle">
+      <h1>GESTIÓN FOCO 2026</h1>
+      <p>RD · DM · Tienda | Versión 6.0 ejecutiva</p>
+    </div>
+    <nav class="tabs" aria-label="Vistas FOCO">
+      <button class="tab active" data-view="rd">RD</button>
+      <button class="tab" data-view="dm">DM</button>
+      <button class="tab" data-view="tienda">Tienda</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="filters" class="filters rd">
+      <div class="field">
+        <label>Mes</label>
+        <select id="mes"></select>
+      </div>
+      <div class="field" id="regionWrap">
+        <label>Región / RD</label>
+        <select id="region"></select>
+      </div>
+      <div class="field hide" id="dmWrap">
+        <label>DM</label>
+        <select id="dm"></select>
+      </div>
+      <div class="field hide" id="searchWrap">
+        <label>Buscar tienda o CeCo</label>
+        <input id="storeSearch" list="storeList" placeholder="Ej. Cosmopol, San Marcos, 38155">
+        <datalist id="storeList"></datalist>
+      </div>
+      <div class="field hide" id="storeWrap">
+        <label>Lista desplegable</label>
+        <select id="store"></select>
+      </div>
+    </section>
+
+    <section id="context" class="contextLine"></section>
+    <section id="content" class="view"></section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
