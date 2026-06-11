@@ -60,7 +60,6 @@ function init(){
   $('store').onchange = render;
 
   syncFilters();
-  seedStoreSearch();
   render();
 }
 
