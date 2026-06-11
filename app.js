@@ -341,7 +341,7 @@ function storeMetric(c, k, n, w) {
     cells = w.map(ww => {
       const a = val(c, ww, 'iplh');
       const b = val(c, ww, 'tplh');
-      return `<div class="cell"><div class="split"><div class="splitRow"><span>IPLH</span><b class="value ${cls('iplh', a)}">${fmt(a, 'num1')}</b></div><div class="splitRow"><span>TPLH</span><b class="value neutral">${fmt(b, 'num1')}</b></div></div></div>`;
+      return `<div class="cell"><div class="split cleanSplit"><div class="splitRow"><b class="value ${cls('iplh', a)}">${fmt(a, 'num1')}</b></div><div class="splitRow"><b class="value neutral">${fmt(b, 'num1')}</b></div></div></div>`;
     }).join('');
   } else {
     cells = vals.map((v, i) => {
@@ -355,7 +355,7 @@ function storeMetric(c, k, n, w) {
   const iplhProm = avg(w.map(ww => val(c, ww, 'iplh')));
   const tplhProm = avg(w.map(ww => val(c, ww, 'tplh')));
   const promHtml = k === 'iplh'
-    ? `<div class="split"><div class="splitRow"><span>IPLH</span><b class="value ${cls('iplh', iplhProm)}">${fmt(iplhProm, 'num1')}</b></div><div class="splitRow"><span>TPLH</span><b class="value neutral">${fmt(tplhProm, 'num1')}</b></div></div>`
+    ? `<div class="split cleanSplit"><div class="splitRow"><b class="value ${cls('iplh', iplhProm)}">${fmt(iplhProm, 'num1')}</b></div><div class="splitRow"><b class="value neutral">${fmt(tplhProm, 'num1')}</b></div></div>`
     : fmt(prom, def.fmt);
 
   return `<div class="storeMetric"><div class="indexBox">${n}</div><div class="storeName ${k === 'bebida' ? 'alt' : ''}">${def.name}</div><div class="cell obj"><input placeholder="" value="${obj != null ? fmt(obj, def.fmt).replace('%', '') : ''}" onchange="setObjective('${c}','${k}',this.value,'${def.fmt}')"></div>${cells}<div class="cell value prom ${obj != null ? diffCls(def, prom, obj) : cls(k, prom)}">${promHtml}</div></div>`;
