@@ -57,8 +57,7 @@ function init(){
   $('mes').onchange = render;
   $('region').onchange = render;
   $('dm').onchange = render;
-  $('storeSearch').oninput = () => { resolveStore(); render(); };
-  $('store').onchange = () => { seedStoreSearch(); render(); };
+  $('store').onchange = render;
 
   syncFilters();
   seedStoreSearch();
