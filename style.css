@@ -49,3 +49,41 @@
   .cell{font-size:10px;padding:2px;}
   .actions textarea{height:80px;font-size:12px;}
 }
+
+.exportBtn{height:46px;border:none;background:#006241;color:#fff;border-radius:13px;font-weight:700;cursor:pointer;padding:0 18px}.filters.tienda .exportBtn,.filters.rd .exportBtn,.filters.dm .exportBtn{align-self:end}@media print{.appTop,.filters,.exportBtn{display:none!important}.wrap{padding:0}.pillar,.dashboardMetric{break-inside:avoid}}
+/* V6.4 PWA + Exportación ejecutiva */
+.logoMark{object-fit:cover;padding:2px;background:#fff;}
+.exportBtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:132px;height:46px;border:none;background:linear-gradient(135deg,#006241,#00865a);color:#fff;border-radius:13px;font-weight:900;cursor:pointer;padding:0 18px;box-shadow:0 8px 18px rgba(0,98,65,.18);letter-spacing:.2px;}
+.exportBtn:hover{filter:brightness(1.04);transform:translateY(-1px)}
+.exportIcon{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:18px;line-height:1;}
+.filters.rd,.filters.dm{grid-template-columns:210px 1fr 150px;max-width:940px}.filters.tienda{grid-template-columns:180px minmax(300px,1fr) minmax(260px,1fr) 150px;max-width:1120px}
+.printMeta{display:none;margin:-4px 0 14px;padding:8px 12px;border:1px solid rgba(0,98,65,.22);border-radius:12px;background:linear-gradient(135deg,#fffdf4,#f7fbf8);color:#245245;font-size:11px;letter-spacing:.2px;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.printMeta strong{color:#003f2d;font-size:12px;letter-spacing:1px}.printMeta span{white-space:nowrap}.storeSheet{position:relative;}
+@media(max-width:760px){
+  .filters.rd,.filters.dm,.filters.tienda{grid-template-columns:1fr;}
+  .exportBtn{width:100%;}
+  .printMeta{display:flex;font-size:10px;gap:8px;}
+}
+@page{size:landscape;margin:7mm;}
+@media print{
+  html,body{background:#fff!important;width:100%;}
+  .appTop,.filters,.contextLine,.summaryDeck,.exportBtn{display:none!important;}
+  .wrap{max-width:none!important;width:100%!important;margin:0!important;padding:0!important;}
+  .view{animation:none!important;}
+  .storeSheet{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:10px 12px 8px!important;border:2px solid #006241!important;border-radius:10px!important;box-shadow:none!important;overflow:visible!important;background:#fff!important;page-break-inside:avoid;break-inside:avoid;}
+  .printMeta{display:flex!important;font-size:9px!important;margin:0 0 6px!important;padding:4px 8px!important;border-radius:8px!important;gap:12px!important;background:#fffdf4!important;}
+  .printMeta strong{font-size:10px!important;}
+  .storeGrid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px 14px!important;min-width:0!important;}
+  .storePillar h2{font-size:15px!important;margin:0 0 5px!important;line-height:1!important;}
+  .storeMetricHead{grid-template-columns:92px 42px repeat(5,1fr) 46px!important;margin-left:28px!important;margin-bottom:1px!important;font-size:5.8px!important;}
+  .storeMetric{grid-template-columns:28px 92px 42px repeat(5,1fr) 46px!important;min-height:30px!important;margin-bottom:6px!important;border-radius:8px!important;}
+  .indexBox{font-size:14px!important;}
+  .storeName{font-size:6.8px!important;padding:2px!important;line-height:1!important;}
+  .cell{font-size:7.2px!important;padding:1px!important;line-height:1!important;}
+  .cell input{font-size:7.2px!important;}
+  .cleanSplit .splitRow{padding:1px!important;}
+  .cleanSplit .splitRow b{font-size:7.2px!important;}
+  .actions{margin:4px 0 8px!important;padding:6px 8px!important;border-radius:9px!important;}
+  .actions h3{font-size:11px!important;margin:0 0 3px!important;}
+  .actions textarea{height:46px!important;font-size:7.8px!important;line-height:13px!important;background:repeating-linear-gradient(to bottom,transparent 0 12px,#bdb8aa 13px,#bdb8aa 14px)!important;resize:none!important;overflow:hidden!important;}
+}

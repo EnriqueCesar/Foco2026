@@ -318,7 +318,8 @@ function renderStore() {
   updateHeaderSubtitle('tienda', s ? s.tienda : 'Tienda');
   const w = weeks();
 
-  let html = `<section class="storeSheet"><div class="storeGrid">`;
+  const tiendaLabel = s ? `${escapeHtml(s.tienda)} · ${escapeHtml(s.ceco)}` : 'Selecciona una tienda';
+  let html = `<section class="storeSheet"><div class="printMeta"><strong>FOCO 2026</strong><span>Mes: ${escapeHtml($('mes').value)}</span><span>Tienda: ${tiendaLabel}</span></div><div class="storeGrid">`;
   pillars.forEach((p, pi) => {
     html += `<div class="storePillar"><h2>${p.title}</h2>
       <div class="storeMetricHead"><span></span><span>Objetivo</span>${w.map(x => `<span>${x}</span>`).join('')}<span>Prom</span></div>`;
@@ -394,3 +395,19 @@ function escapeHtml(s) {
 }
 
 init();
+
+
+function exportFOCO(){
+  const mes = $('mes') ? $('mes').value : 'Mes';
+  const store = $('store') && byCeco[$('store').value] ? byCeco[$('store').value].tienda : (view === 'dm' ? $('dm').value : $('region').value);
+  const oldTitle = document.title;
+  document.title = `FOCO_2026_${mes}_${store || 'Dashboard'}`.replace(/[^a-z0-9_\-]+/gi,'_');
+  window.print();
+  setTimeout(()=>{document.title = oldTitle;}, 600);
+}
+
+window.addEventListener('load',()=>{
+  const b=document.getElementById('exportBtn');
+  if(b){b.onclick=exportFOCO;}
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
+});
