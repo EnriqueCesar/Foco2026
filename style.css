@@ -87,3 +87,158 @@
   .actions h3{font-size:11px!important;margin:0 0 3px!important;}
   .actions textarea{height:46px!important;font-size:7.8px!important;line-height:13px!important;background:repeating-linear-gradient(to bottom,transparent 0 12px,#bdb8aa 13px,#bdb8aa 14px)!important;resize:none!important;overflow:hidden!important;}
 }
+
+
+/* V6.6 - Exportación Tienda optimizada: más centrada, más grande y conservando colores */
+@page{size:A4 landscape;margin:6mm;}
+@media print{
+  *{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+    color-adjust:exact!important;
+  }
+  html,body{
+    width:100%!important;
+    min-height:100%!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+  }
+  body{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  .appTop,.filters,.contextLine,.summaryDeck,.exportBtn{display:none!important;}
+  .wrap{
+    width:100%!important;
+    max-width:none!important;
+    margin:0 auto!important;
+    padding:0!important;
+  }
+  .view{animation:none!important;width:100%!important;}
+  .storeSheet{
+    width:100%!important;
+    max-width:276mm!important;
+    min-height:184mm!important;
+    margin:0 auto!important;
+    padding:8mm 7mm 7mm!important;
+    border:2.2px solid #006241!important;
+    border-radius:13px!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+    background:#ffffff!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    page-break-inside:avoid!important;
+    break-inside:avoid!important;
+  }
+  .printMeta{
+    display:flex!important;
+    justify-content:center!important;
+    align-items:center!important;
+    gap:18px!important;
+    margin:0 0 7mm!important;
+    padding:6px 12px!important;
+    border:1px solid rgba(0,98,65,.26)!important;
+    border-radius:10px!important;
+    background:linear-gradient(135deg,#fffdf4,#f7fbf8)!important;
+    color:#245245!important;
+    font-size:10px!important;
+    letter-spacing:.25px!important;
+  }
+  .printMeta strong{font-size:11px!important;color:#003f2d!important;letter-spacing:1px!important;}
+  .printMeta span{white-space:nowrap!important;}
+  .storeGrid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:12mm 7mm!important;
+    min-width:0!important;
+    flex:1!important;
+    align-content:space-between!important;
+  }
+  .storePillar{
+    min-width:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+  }
+  .storePillar h2{
+    font-size:17px!important;
+    margin:0 0 4mm!important;
+    line-height:1.08!important;
+    color:#003f2d!important;
+    font-weight:900!important;
+  }
+  .storeMetricHead{
+    grid-template-columns:31mm 13mm repeat(5,1fr) 15mm!important;
+    margin-left:10mm!important;
+    margin-bottom:1.2mm!important;
+    font-size:6.5px!important;
+    color:#1b3329!important;
+  }
+  .storeMetric{
+    grid-template-columns:10mm 31mm 13mm repeat(5,1fr) 15mm!important;
+    min-height:11.8mm!important;
+    margin-bottom:2.5mm!important;
+    border:1px solid #e0d7c8!important;
+    border-radius:9px!important;
+    background:#fff!important;
+  }
+  .indexBox{
+    background:#133f35!important;
+    color:#fff!important;
+    font-size:16px!important;
+    font-weight:900!important;
+  }
+  .storeName{
+    background:linear-gradient(135deg,#064a31,#00865a)!important;
+    color:#fff!important;
+    font-size:7.8px!important;
+    line-height:1.08!important;
+    padding:2px!important;
+    font-weight:900!important;
+  }
+  .storeName.alt{background:#a8df92!important;color:#fff!important;}
+  .cell{
+    font-size:8.5px!important;
+    line-height:1.05!important;
+    padding:1px!important;
+    border-left:1px solid #eee6da!important;
+    background:#fff!important;
+  }
+  .cell input{font-size:8.5px!important;color:inherit!important;}
+  .prom{background:#fbfaf4!important;}
+  .value.red,.red{color:#d71920!important;font-weight:900!important;}
+  .value.green,.green{color:#006241!important;font-weight:900!important;}
+  .value.neutral,.neutral{color:#111!important;font-weight:900!important;}
+  .cleanSplit .splitRow{padding:1px!important;line-height:1!important;}
+  .cleanSplit .splitRow b{font-size:8.5px!important;}
+  .actions{
+    flex:1!important;
+    min-height:27mm!important;
+    margin:1.5mm 0 0!important;
+    padding:4mm 4mm 3mm!important;
+    border:1px solid #f0e2bd!important;
+    border-radius:10px!important;
+    background:linear-gradient(135deg,#fff9df,#fffdf4)!important;
+  }
+  .actions h3{
+    font-size:13px!important;
+    margin:0 0 2mm!important;
+    color:#111!important;
+    font-weight:900!important;
+  }
+  .actions textarea{
+    height:20mm!important;
+    font-size:8.8px!important;
+    line-height:6mm!important;
+    padding:0 2mm!important;
+    color:#333!important;
+    background:repeating-linear-gradient(to bottom,transparent 0 5.5mm,#bdb8aa 5.6mm,#bdb8aa 5.8mm)!important;
+    border:0!important;
+    resize:none!important;
+    overflow:hidden!important;
+  }
+}
