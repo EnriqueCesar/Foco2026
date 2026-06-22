@@ -2,10 +2,10 @@
   "name": "FOCO 2026",
   "short_name": "FOCO",
   "description": "Dashboard ejecutivo FOCO 2026 para seguimiento por RD, DM y Tienda.",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "landscape",
   "background_color": "#f7f4ec",
   "theme_color": "#006241",
   "icons": [
