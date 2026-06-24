@@ -1,4 +1,9 @@
-FOCO 2026 - Proyecto completo actualizado con Semana 25.
+# FOCO 2026
 
-Datos generados desde Foco 2026(20).xlsx.
-Conexión y Bebida calculadas como Ponderación / Encuestas desde Base_Qualtrics (U/E y V/E).
+Versión corregida Sem 25.
+
+Validación clave:
+- Conexión = Columna U / Encuestas Columna E.
+- Calidad de Bebidas = Columna V / Encuestas Columna E.
+- CeCo = Columna W.
+- Exportar PDF usa impresión horizontal con diseño compacto.

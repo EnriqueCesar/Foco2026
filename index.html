@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FOCO 2026 V6.3</title>
-  <link rel="stylesheet" href="style.css?v=6.3">
+  <title>FOCO 2026</title>
+  <link rel="manifest" href="manifest.webmanifest?v=6.8.25">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <link rel="stylesheet" href="style.css?v=6.8.25">
 </head>
 <body>
   <header class="appTop">
     <div class="brandLockup">
-      <div class="mark">★</div>
+      <div class="mark"><img src="assets/icons/icon-96.png" alt="FOCO 2026"></div>
       <div class="appTitle">
         <h1>FOCO 2026</h1>
         <p id="appSubtitle">Dashboard ejecutivo Starbucks</p>
@@ -40,13 +43,23 @@
   <label>Tienda</label>
   <select id="store"></select>
 </div>
+      <div class="field exportWrap">
+        <label>&nbsp;</label>
+        <button id="exportBtn" class="exportBtn" type="button">⬇ Exportar PDF</button>
+      </div>
     </section>
 
     <section id="context" class="contextLine"></section>
+    <section id="printHeader" class="printHeader"></section>
     <section id="content" class="view"></section>
   </main>
 
-  <script src="data.js?v=6.3"></script>
-  <script src="app.js?v=6.3"></script>
+  <script src="data.js?v=6.8.25"></script>
+  <script src="app.js?v=6.8.25"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=6.8.25'));
+    }
+  </script>
 </body>
 </html>

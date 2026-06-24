@@ -72,6 +72,7 @@ function init() {
   $('region').onchange = render;
   $('dm').onchange = render;
   $('store').onchange = render;
+  if ($('exportBtn')) $('exportBtn').onclick = exportPDF;
 
   syncFilters();
   render();
@@ -204,6 +205,7 @@ function updateHeaderSubtitle(type, scopeLabel) {
   const m = $('mes').value;
   const viewLabel = type === 'rd' ? 'Vista RD' : type === 'dm' ? 'Vista DM' : 'Vista Tienda';
   $('appSubtitle').textContent = `${scopeLabel || 'Nacional'} | ${m} 2026 · ${viewLabel}`;
+  if ($('printHeader')) $('printHeader').textContent = `FOCO 2026 | ${scopeLabel || 'Nacional'} | ${m} 2026 · ${viewLabel}`;
 }
 
 function render() {
@@ -392,5 +394,42 @@ function escapeHtml(s) {
     "'": '&#039;'
   }[m]));
 }
+
+
+function exportPDF() {
+  const btn = $('exportBtn');
+  const selectedMonth = $('mes') ? $('mes').value : '';
+  const selectedStore = $('store') && view === 'tienda' && byCeco[$('store').value] ? byCeco[$('store').value].tienda : '';
+  const selectedDM = $('dm') && view === 'dm' ? $('dm').value : '';
+  const selectedRegion = $('region') && view === 'rd' ? $('region').value : '';
+  const scope = selectedStore || selectedDM || selectedRegion || 'FOCO 2026';
+  const oldTitle = document.title;
+  document.title = `FOCO 2026 - ${scope} - ${selectedMonth} 2026`;
+  document.body.classList.add('exporting', `export-${view}`);
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Preparando PDF...';
+  }
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove('exporting', 'export-rd', 'export-dm', 'export-tienda');
+      document.title = oldTitle;
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = '⬇ Exportar PDF';
+      }
+    }, 700);
+  }, 150);
+}
+
+window.addEventListener('afterprint', () => {
+  document.body.classList.remove('exporting', 'export-rd', 'export-dm', 'export-tienda');
+  const btn = $('exportBtn');
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = '⬇ Exportar PDF';
+  }
+});
 
 init();
