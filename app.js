@@ -33,7 +33,7 @@ const metricDefs = {
   bebida: { name: 'Calidad de Bebidas', short: 'Bebida', fmt: 'pct1', dir: 'up', threshold: 0.71 },
   iplh: { name: 'IPLH / TPLH', short: 'IPLH/TPLH', fmt: 'num1', dir: 'up', threshold: 16 },
   peak: { name: 'Peak Hour', short: 'Peak Hour', fmt: 'num0', dir: 'up', threshold: 5 },
-  costo: { name: 'Variación de Inventario', short: 'Inventario', fmt: 'pct1', dir: 'down', threshold: 0.009 },
+  costo: { name: 'Variación de Inventario', short: 'Inventario', fmt: 'pct1', dir: 'range', min: -0.009, max: 0.009, threshold: 0.009 },
   ctc: { name: 'Cada Taza Cuenta', short: 'CTC', fmt: 'pct1', dir: 'up', threshold: 0.10 }
 };
 
@@ -114,6 +114,7 @@ function val(c, w, k) {
 function cls(k, v) {
   if (v == null || Number.isNaN(v)) return 'neutral';
   if (k === 'omt') return v < 0 ? 'red' : 'green';
+  if (k === 'costo') return v >= metricDefs[k].min && v <= metricDefs[k].max ? 'green' : 'red';
   const t = metricDefs[k].threshold;
   if (metricDefs[k].dir === 'down') return v > t ? 'red' : 'green';
   return v < t ? 'red' : 'green';
@@ -162,13 +163,20 @@ function trendText(k, vals) {
 function trendClass(k, vals) {
   const t = trend(vals);
   if (t.delta == null || t.delta === 0) return 'neutral';
-  const good = metricDefs[k].dir === 'down' ? t.delta < 0 : t.delta > 0;
+  let good;
+  if (k === 'costo') {
+    const clean = vals.filter(v => v != null && !Number.isNaN(v));
+    good = Math.abs(clean[clean.length - 1]) <= Math.abs(clean[0]);
+  } else {
+    good = metricDefs[k].dir === 'down' ? t.delta < 0 : t.delta > 0;
+  }
   return good ? 'green' : 'red';
 }
 
 function perfGap(k, v) {
   if (v == null) return null;
   if (k === 'omt') return v;
+  if (k === 'costo') return metricDefs[k].threshold - Math.abs(v);
   const t = metricDefs[k].threshold;
   return metricDefs[k].dir === 'down' ? t - v : v - t;
 }
@@ -189,7 +197,7 @@ function trendOverall(cecos) {
     const e = entity(cecos, k);
     const t = trend(e.weeks);
     if (t.delta == null) return null;
-    const good = metricDefs[k].dir === 'down' ? -t.delta : t.delta;
+    const good = metricDefs[k].dir === 'down' || metricDefs[k].dir === 'range' ? -Math.abs(t.delta) : t.delta;
     return good;
   }).filter(v => v != null);
 
@@ -288,7 +296,7 @@ function renderExecMetric(groups, scopeCecos, k, type) {
   const scopeMetric = entity(scopeCecos, k);
   const rows = groups.map(g => ({ ...g, m: entity(g.cecos, k) }))
     .filter(g => g.m.prom != null)
-    .sort((a, b) => (b.m.prom ?? -999) - (a.m.prom ?? -999));
+    .sort((a, b) => k === 'costo' ? (a.m.prom ?? 999) - (b.m.prom ?? 999) : (b.m.prom ?? -999) - (a.m.prom ?? -999));
 
   const label = type === 'rd' ? 'Prom Regional' : 'Prom DM';
   const tableLabel = type === 'rd' ? 'DM' : 'Tienda';
@@ -365,6 +373,7 @@ function storeMetric(c, k, n, w) {
 
 function diffCls(def, v, o) {
   if (v == null || o == null) return 'neutral';
+  if (def.dir === 'range') return v >= def.min && v <= def.max ? 'green' : 'red';
   return def.dir === 'down' ? (v <= o ? 'green' : 'red') : (v >= o ? 'green' : 'red');
 }
 
