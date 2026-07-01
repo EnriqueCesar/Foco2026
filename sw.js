@@ -1,4 +1,4 @@
-const CACHE_NAME = 'FOCO-2026-W26-DATA-foco-2026-v6-8-25';
+const CACHE_NAME = 'foco-2026-audit-w26-v23';
 const APP_SHELL = [
   './',
   './index.html',

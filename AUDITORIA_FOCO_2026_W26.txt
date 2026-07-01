@@ -1,0 +1,36 @@
+AUDITORÍA FOCO 2026 - ACTUALIZACIÓN GENERAL
+Fuente: Foco 2026(23).xlsx
+Acción: regeneración completa de data.js desde todas las pestañas base, sin modificar diseño ni estructura visual.
+
+Pestañas leídas: Directorio, Base_Mes_Semana, OMT, Segundas Cx, IPLH_TPLH, Costo, CTC_Tienda, Base_Qualtrics.
+Corrección aplicada: normalización de CeCo numérico/texto, incluyendo Base_Qualtrics con CeCo tipo 38.483 -> 38483.
+Corrección aplicada: OMT recalculado como ADT Real - ADT AA, usando la base nueva.
+Corrección aplicada: se eliminó duplicidad de const ws en app.js para evitar riesgo de error de JavaScript.
+Corrección aplicada: cache del service worker actualizado para forzar refresco del navegador.
+
+Conteo de registros fuente por semana 22-26:
+- OMT: S22=884, S23=881, S24=885, S25=886, S26=885
+- Segundas Cx: S22=949, S23=947, S24=947, S25=949, S26=953
+- IPLH_TPLH: S22=937, S23=938, S24=938, S25=72, S26=943
+- Costo: S22=941, S23=942, S24=943, S25=943, S26=1018
+- CTC_Tienda: S22=895, S23=901, S24=898, S25=908, S26=906
+- Base_Qualtrics: S22=911, S23=926, S24=920, S25=72, S26=898
+
+Cobertura dentro del Directorio por KPI/Semana 22-26:
+- omt: S22=884, S23=881, S24=885, S25=886, S26=885
+- seg: S22=949, S23=947, S24=947, S25=949, S26=953
+- cx: S22=904, S23=921, S24=916, S25=72, S26=892
+- bebida: S22=904, S23=922, S24=916, S25=72, S26=894
+- iplh: S22=937, S23=938, S24=938, S25=72, S26=943
+- tplh: S22=937, S23=938, S24=938, S25=72, S26=943
+- costo: S22=941, S23=942, S24=943, S25=943, S26=962
+- ctc: S22=866, S23=867, S24=866, S25=870, S26=867
+
+Validación Forum Buenavista 38483:
+{"ceco": "38483", "semana": 22, "omt": -9.1, "seg": 87.0, "iplh": 15.23, "tplh": 7.372, "costo": 0.010404, "ctc": 0.066848, "cx": 0.625, "bebida": 0.63, "desempeno": 0.652, "encuestas": 8.0, "nps": 87.5}
+{"ceco": "38483", "semana": 23, "omt": 32.7, "seg": 89.0, "iplh": 15.794, "tplh": 7.556, "costo": 0.014625, "ctc": 0.060742, "cx": 0.333, "bebida": 0.33, "desempeno": 0.382, "encuestas": 6.0, "nps": 16.7}
+{"ceco": "38483", "semana": 24, "omt": -16.4, "seg": 56.0, "iplh": 13.377, "tplh": 6.551, "costo": -0.003962, "ctc": 0.052405, "cx": 0.417, "bebida": 0.5, "desempeno": 0.448, "encuestas": 12.0, "nps": 75.0}
+{"ceco": "38483", "semana": 25, "omt": -2.4, "seg": 85.0, "costo": 0.015746, "ctc": 0.048598}
+{"ceco": "38483", "semana": 26, "omt": -17.0, "seg": 86.0, "iplh": 13.515, "tplh": 6.652, "costo": 0.008181, "ctc": 0.051204, "cx": 0.5, "bebida": 0.63, "desempeno": 0.698, "encuestas": 8.0, "nps": 50.0}
+
+Nota de auditoría: los blancos que permanezcan corresponden a ausencia real del dato en la fuente Excel, no a falla de lectura. En particular, IPLH_TPLH y Base_Qualtrics tienen cobertura limitada en S25 según el archivo recibido.
