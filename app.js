@@ -51,7 +51,7 @@ let manual = JSON.parse(localStorage.focoV6Manual || localStorage.focoV5Manual |
 
 function init() {
   months.forEach(m => $('mes').add(new Option(m, m)));
-  $('mes').value = months.includes('May') ? 'May' : (months[0] || 'Ene');
+  $('mes').value = D.defaultMonth && months.includes(D.defaultMonth) ? D.defaultMonth : (months.includes('Jul') ? 'Jul' : (months[0] || 'Ene'));
 
   [...new Set(dir.map(d => d.region).filter(Boolean))].sort().forEach(r => $('region').add(new Option(r, r)));
   if ([...$('region').options].some(o => o.value === 'Centro Norte')) $('region').value = 'Centro Norte';
@@ -97,7 +97,7 @@ function syncFilters() {
 }
 
 function weeks() {
-  return (monthWeeks5[$('mes').value] || (D.monthWeeks && D.monthWeeks[$('mes').value]) || []).slice(0, 5);
+  return ((D.monthWeeks && D.monthWeeks[$('mes').value]) || monthWeeks5[$('mes').value] || []).slice(0, 5);
 }
 
 function avg(arr) {
