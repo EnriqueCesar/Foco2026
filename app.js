@@ -58,12 +58,14 @@ function init() {
 
   fillDMAll();
   fillStoreAll();
+  if (typeof window.initExecutiveSlicers === 'function') window.initExecutiveSlicers();
 
   document.querySelectorAll('.tab').forEach(b => {
     b.onclick = () => {
       view = b.dataset.view;
       document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === b));
       syncFilters();
+      updatePageTitle();
       render();
     };
   });
@@ -75,7 +77,15 @@ function init() {
   if ($('exportBtn')) $('exportBtn').onclick = exportPDF;
 
   syncFilters();
+  updatePageTitle();
   render();
+}
+
+
+function updatePageTitle() {
+  const title = $('pageTitle');
+  if (!title) return;
+  title.textContent = view === 'rd' ? 'Vista ejecutiva RD' : view === 'dm' ? 'Vista ejecutiva DM' : 'Vista ejecutiva Tienda';
 }
 
 function fillDMAll() {

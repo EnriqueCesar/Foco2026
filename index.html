@@ -3,62 +3,99 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#006241">
   <title>FOCO 2026</title>
-  <link rel="manifest" href="manifest.webmanifest?v=6.8.27">
+  <link rel="manifest" href="manifest.webmanifest?v=7.0.0">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
-  <link rel="stylesheet" href="style.css?v=6.8.27">
+  <link rel="stylesheet" href="style.css?v=7.0.0">
 </head>
 <body>
-  <header class="appTop">
-    <div class="brandLockup">
-      <div class="mark"><img src="assets/icons/icon-96.png" alt="FOCO 2026"></div>
-      <div class="appTitle">
-        <h1>FOCO 2026</h1>
-        <p id="appSubtitle">Dashboard ejecutivo Starbucks</p>
+  <a class="skipLink" href="#content">Ir al contenido</a>
+  <div class="appShell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="brandLockup">
+        <div class="mark"><img src="assets/icons/icon-96.png" alt=""></div>
+        <div class="appTitle">
+          <h1>FOCO 2026</h1>
+          <p>Executive Dashboard</p>
+        </div>
       </div>
+      <nav class="tabs" aria-label="Vistas FOCO">
+        <button class="tab active" data-view="rd" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m8 10V5m8 14v-7M2 19h20"/></svg>
+          <span>RD</span>
+        </button>
+        <button class="tab" data-view="dm" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>DM</span>
+        </button>
+        <button class="tab" data-view="tienda" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l2-5h14l2 5M5 13v7h14v-7M9 20v-5h6v5M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></svg>
+          <span>Tienda</span>
+        </button>
+      </nav>
+      <div class="sidebarFoot">
+        <span class="statusDot" aria-hidden="true"></span>
+        <span>Datos actualizados</span>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="appTop">
+        <div>
+          <span class="eyebrow">FOCO · Operaciones</span>
+          <h2 id="pageTitle">Vista ejecutiva RD</h2>
+          <p id="appSubtitle">Dashboard ejecutivo Starbucks</p>
+        </div>
+        <button id="exportBtn" class="exportBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+          <span>Exportar PDF</span>
+        </button>
+      </header>
+
+      <main class="wrap">
+        <section id="filters" class="filters rd" aria-label="Filtros del dashboard">
+          <div class="filterHeading">
+            <div>
+              <span class="eyebrow">Segmentadores</span>
+              <h3>Filtros activos</h3>
+            </div>
+            <span class="liveBadge"><span></span>Actualización inmediata</span>
+          </div>
+          <div class="filterGrid">
+            <div class="field">
+              <label for="mes">Mes</label>
+              <select id="mes"></select>
+            </div>
+            <div class="field" id="regionWrap">
+              <label for="region">RD / Región</label>
+              <select id="region" data-slicer="RD / Región"></select>
+            </div>
+            <div class="field hide" id="dmWrap">
+              <label for="dm">DM</label>
+              <select id="dm" data-slicer="DM"></select>
+            </div>
+            <div class="field hide" id="storeWrap">
+              <label for="store">Tienda</label>
+              <select id="store" data-slicer="Tienda"></select>
+            </div>
+          </div>
+        </section>
+
+        <section id="context" class="contextLine" aria-live="polite"></section>
+        <section id="printHeader" class="printHeader"></section>
+        <section id="content" class="view" tabindex="-1"></section>
+      </main>
     </div>
-    <nav class="tabs" aria-label="Vistas FOCO">
-      <button class="tab active" data-view="rd">RD</button>
-      <button class="tab" data-view="dm">DM</button>
-      <button class="tab" data-view="tienda">Tienda</button>
-    </nav>
-  </header>
+  </div>
 
-  <main class="wrap">
-    <section id="filters" class="filters rd">
-      <div class="field">
-        <label>Mes</label>
-        <select id="mes"></select>
-      </div>
-      <div class="field" id="regionWrap">
-        <label>RD / Región</label>
-        <select id="region"></select>
-      </div>
-      <div class="field hide" id="dmWrap">
-        <label>DM</label>
-        <select id="dm"></select>
-      </div>
-<div class="field hide" id="storeWrap">
-  <label>Tienda</label>
-  <select id="store"></select>
-</div>
-      <div class="field exportWrap">
-        <label>&nbsp;</label>
-        <button id="exportBtn" class="exportBtn" type="button">⬇ Exportar PDF</button>
-      </div>
-    </section>
-
-    <section id="context" class="contextLine"></section>
-    <section id="printHeader" class="printHeader"></section>
-    <section id="content" class="view"></section>
-  </main>
-
-  <script src="data.js?v=6.8.27"></script>
-  <script src="app.js?v=6.8.27"></script>
+  <script src="data.js?v=7.0.0"></script>
+  <script src="slicers.js?v=7.0.0"></script>
+  <script src="app.js?v=7.0.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=6.8.27'));
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=7.0.0'));
     }
   </script>
 </body>

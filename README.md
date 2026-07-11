@@ -1,60 +1,31 @@
-# FOCO 2026
+# FOCO 2026 — Executive Design System
 
-Versión: `v27-foco2026-data-update`
+Versión optimizada para GitHub Pages que conserva la lógica, cálculos, relaciones, datos y resultados de la versión original.
 
-Actualización segura de datos a **Semana 27** usando como fuente `Foco 2026.xlsx`.
+## Actualización visual
 
-## Cambios realizados
+- Design System ejecutivo inspirado en Starbucks Internal Tools.
+- Navegación RD, DM y Tienda unificada.
+- Segmentadores modernos con búsqueda para RD, DM y Tienda.
+- Persistencia local de selección.
+- Diseño responsive para escritorio, tablet y móvil.
+- Iconografía SVG monoline.
+- Estilos de impresión y exportación PDF conservados.
+- Service Worker actualizado.
 
-- Se regeneró `data.js` desde el Excel actualizado.
-- Se validó y leyó `CTC_Tienda` por encabezados con la estructura actual:
-  - Año
-  - Semana
-  - Ceco
-  - Tienda
-  - Part FHW
-- Se validó y leyó `CTC_DM` por encabezados con la estructura actual:
-  - Año
-  - Semana
-  - DM
-  - Part FHW
-- Se mantuvo la estructura de datos que consume `app.js` para no romper la aplicación.
-- Se agregó `updatedToWeek: 27` y `defaultMonth: Jul` dentro de `window.FOCO_DATA`.
-- Se ajustó la lectura de semanas del mes para priorizar `Base_Mes_Semana` desde el Excel.
-- Se actualizó el cache del Service Worker para evitar data anterior en navegador/PWA.
+## Lógica conservada
 
-## Pestañas usadas
+- Cálculos y umbrales originales.
+- Datos y estructura de `window.FOCO_DATA` sin modificaciones.
+- Vistas RD, DM y Tienda.
+- KPIs, tablas, rankings, promedios, tendencias, objetivos y acciones.
+- Persistencia de acciones, objetivos y valores manuales.
 
-- Directorio
-- Base_Mes_Semana
-- OMT
-- Segundas Cx
-- IPLH_TPLH_Real
-- Costo
-- CTC_Tienda
-- CTC_DM
-- Base_Qualtrics
+## Publicación
 
-## Compatibilidad
+1. Subir todos los archivos a la raíz del repositorio.
+2. En GitHub abrir **Settings → Pages**.
+3. Seleccionar **Deploy from a branch**.
+4. Elegir la rama principal y carpeta `/root`.
 
-- Compatible con GitHub Pages.
-- Compatible con PWA / Service Worker.
-- No se modificó la arquitectura visual ni funcional del proyecto.
-- Ningún archivo final supera 20 MB.
-
-## Validaciones realizadas
-
-- Proyecto descomprimido y auditado.
-- Pestañas necesarias presentes.
-- Encabezados de `CTC_Tienda` presentes y validados.
-- Encabezados de `CTC_DM` presentes y validados.
-- Semana 27 encontrada en las pestañas fuente correspondientes.
-- `data.js` regenerado en el formato actual de `window.FOCO_DATA`.
-- Sintaxis JavaScript validada en `app.js`, `data.js` y `sw.js`.
-- `manifest.webmanifest` validado como JSON.
-- Rutas principales de PWA conservadas.
-- ZIP final generado correctamente.
-
-## Nota técnica
-
-La actualización trabaja por nombre de encabezado, no por posición física de columna. Esto evita que la nueva columna `Año` en `CTC_Tienda` y `CTC_DM` desplace cálculos existentes.
+La aplicación usa rutas relativas y es compatible con GitHub Pages.
